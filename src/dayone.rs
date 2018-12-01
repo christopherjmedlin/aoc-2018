@@ -1,7 +1,7 @@
 
 pub fn day_one(input: Vec<String>) -> String {
     let mut frequency: i32 = 0;
-    let mut reached_frequencies: Vec<i32> = Vec::new();
+    let mut reached_frequencies: [bool; 150000] = [false; 150000];
     let mut result_found: bool = false;
     
     while !result_found {
@@ -16,12 +16,14 @@ pub fn day_one(input: Vec<String>) -> String {
                 frequency -= num;
             }
             
-            println!("{}", reached_frequencies.len());
-            if reached_frequencies.contains(&frequency) {
-                result_found = true;
-                break;
-            }
-            reached_frequencies.push(frequency);
+            if frequency > 0 {
+                if reached_frequencies[frequency as usize] {
+                    result_found = true;
+                    break;
+                } else {
+                    reached_frequencies[frequency as usize] = true;
+                }
+            }   
         }
     }
 
