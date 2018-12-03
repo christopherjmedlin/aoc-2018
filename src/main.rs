@@ -3,6 +3,8 @@ use std::fs::File;
 use std::io::{BufReader, BufRead};
 
 mod dayone;
+mod daytwo;
+mod daythree;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -23,7 +25,9 @@ fn run_day(day: &str) -> String {
 
 
     match day {
-        "1" => {dayone::day_one(input)}
+        "1" => {dayone::day_one(input)},
+        "2" => {daytwo::day_two(input)},
+        "3" => {daythree::day_three(input)},
         &_ => {format!("Day {} has not been implemented", day)}
     }
 }
