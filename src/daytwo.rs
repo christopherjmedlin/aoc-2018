@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn day_two(input: Vec<String>) -> String {
+pub fn day_two(input: Vec<String>) -> (String, String) {
     let mut identical_characters = String::new();
     let mut correct_boxes_found = false;
     let mut result: String = String::new();
@@ -29,5 +29,5 @@ pub fn day_two(input: Vec<String>) -> String {
         }
     }
 
-    result.to_string()
+    (String::from("¯\\_(ツ)_/¯"), result.to_string())
 }

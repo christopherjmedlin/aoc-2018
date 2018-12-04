@@ -1,5 +1,5 @@
 
-pub fn day_one(input: Vec<String>) -> String {
+pub fn day_one(input: Vec<String>) -> (String, String) {
     let mut frequency: i32 = 0;
     let mut reached_frequencies: [bool; 150000] = [false; 150000];
     let mut result_found: bool = false;
@@ -27,5 +27,5 @@ pub fn day_one(input: Vec<String>) -> String {
         }
     }
 
-    frequency.to_string()
+    (String::from("¯\\_(ツ)_/¯"), frequency.to_string())
 }

@@ -1,5 +1,43 @@
 
-pub fn day_three(input: Vec<String>) -> String {
+pub fn day_three(input: Vec<String>) -> (String, String) {
+    (part_one(&input), part_two(&input))
+}
+
+fn part_one(input: &Vec<String>) -> String {
+    let mut map = [[0; 1200]; 1200];
+
+    for line in input.iter() {
+        let mut split: Vec<&str> = line.split(" @ ").collect();
+        let line = split[1];
+        split = line.split(": ").collect();
+        let split2: Vec<&str> = split[0].split(",").collect();
+        let split3: Vec<&str> = split[1].split("x").collect();
+
+        let x: u32 = split2[0].parse().unwrap();
+        let y: u32 = split2[1].parse().unwrap();
+        let width: u32 = split3[0].parse().unwrap();
+        let height: u32 = split3[1].parse().unwrap();
+        
+        for i in x..x+width {
+            for j in y..y+height {
+                map[j as usize][i as usize] += 1;
+            }
+        }
+    }
+    
+    let mut overlaps = 0;
+    for arr in map.iter() {
+        for num in arr.iter() {
+            if num > &1 {
+                overlaps += 1;
+            }
+        }
+    }
+    
+    overlaps.to_string()
+}
+
+fn part_two(input: &Vec<String>) -> String {
     let mut map = [[0; 1200]; 1200];
     let mut tiles: Vec<(usize, usize, usize, usize, usize)> = Vec::new();
     
@@ -49,6 +87,6 @@ pub fn day_three(input: Vec<String>) -> String {
             break;
         }
     }
-    
+
     result.to_string()
 }
