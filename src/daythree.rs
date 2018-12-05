@@ -59,9 +59,9 @@ fn part_two(input: &Vec<String>) -> String {
     }
     
     // next, do the drawing of the claims
-    for (id, x, y, width, height) in tiles.iter() {
-        for i in *x..*x+width {
-            for j in *y..*y+height {
+    for &(id, x, y, width, height) in tiles.iter() {
+        for i in x..x+width {
+            for j in y..y+height {
                 map[j as usize][i as usize] += 1;
             }
         }
@@ -70,11 +70,11 @@ fn part_two(input: &Vec<String>) -> String {
     // finally, search for unoverlapped claim
     let mut result = 0;
     let mut result_found: bool;
-    for (id, x, y, width, height) in tiles.iter() {
+    for &(id, x, y, width, height) in tiles.iter() {
         result = 0;
         result_found = true;
-        for i in *x..*x+width {
-            for j in *y..*y+height {
+        for i in x..x+width {
+            for j in y..y+height {
                 if map[j as usize][i as usize] > 1 {
                     result_found = false;
                     break;
@@ -83,7 +83,7 @@ fn part_two(input: &Vec<String>) -> String {
         }
 
         if result_found {
-            result = *id;
+            result = id;
             break;
         }
     }
