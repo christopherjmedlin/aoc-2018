@@ -38,20 +38,33 @@ fn part_two(input: &Vec<String>) -> String {
         let mut i: usize = 0;
         
         let mut i = 0;
-        while i < new_char_vector.len() - 1 {
+        while i < new_char_vector.len() {
+            let mut polymer_found = false;
             let ascii_code = new_char_vector[i] as u8;
-
+        
             if ascii_code == ascii || ascii_code == ascii + 32 {
-                println!("{}", new_char_vector[i]);
                 new_char_vector.remove(i);
+                polymer_found = true;
             }
             
-            i += 1;
+            if !polymer_found {
+                i += 1;
+            } else {
+                if i > 0 {
+                    i - 1;
+                }
+            }
         }
         
         let length = new_char_vector.len();
         if length < smallest_length {
             smallest_length = length;
+        }
+
+        if length == 47994 {
+            println!("{}", ascii);
+            let s: String = new_char_vector.iter().collect();
+            println!("{}", s);
         }
     }
 
