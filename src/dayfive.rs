@@ -3,8 +3,7 @@ pub fn day_five(input: Vec<String>) -> (String, String) {
     (part_one(&input), part_two(&input))
 }
 
-fn part_one(input: &Vec<String>) -> String {
-    let mut char_vector: Vec<char> = input[0].chars().collect();
+fn polymer_reaction(char_vector: &mut Vec<char>) {
     let mut i: usize = 0;
 
     while i < char_vector.len() - 1 {
@@ -25,7 +24,11 @@ fn part_one(input: &Vec<String>) -> String {
             i += 1;
         }
     }
+}
 
+fn part_one(input: &Vec<String>) -> String {
+    let mut char_vector: Vec<char> = input[0].chars().collect();
+    polymer_reaction(&mut char_vector);
     char_vector.len().to_string()
 }
 
@@ -33,7 +36,7 @@ fn part_two(input: &Vec<String>) -> String {
     let char_vector: Vec<char> = input[0].chars().collect();
     
     let mut smallest_length: usize = 50000;
-    for ascii in 65..=90 {
+    for ascii in 65..91 {
         let mut new_char_vector = char_vector.clone();
         let mut i: usize = 0;
         
@@ -49,22 +52,13 @@ fn part_two(input: &Vec<String>) -> String {
             
             if !polymer_found {
                 i += 1;
-            } else {
-                if i > 0 {
-                    i - 1;
-                }
             }
         }
         
+        polymer_reaction(&mut new_char_vector);
         let length = new_char_vector.len();
         if length < smallest_length {
             smallest_length = length;
-        }
-
-        if length == 47994 {
-            println!("{}", ascii);
-            let s: String = new_char_vector.iter().collect();
-            println!("{}", s);
         }
     }
 
