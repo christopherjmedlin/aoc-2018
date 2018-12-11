@@ -12,6 +12,8 @@ mod dayfour;
 mod dayfive;
 mod daysix;
 mod dayseven;
+mod dayeight;
+mod daynine;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -41,6 +43,8 @@ fn run_day(day: &str) -> (String, String) {
         "5" => {dayfive::day_five(input)},
         "6" => {daysix::day_six(input)},
         "7" => {dayseven::day_seven(input)},
+        "8" => {dayeight::day_eight(input)},
+        "9" => {daynine::day_nine(input)},
         &_ => {(String::from("unimplemented"), String::from("unimplemented"))}
     }
 }

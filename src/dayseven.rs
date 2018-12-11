@@ -131,45 +131,5 @@ add all roots to the TODOs, alphabetically
     shift the TODOs up and append all of its children ALPHABETICALLY at the end of TODOs, ALLOWING NO DUPLICATES TO RESULT FROM INSERTION, remove it from TODOs
 */
 fn part_two(input: &Vec<String>) -> String {
-    let mut step_map: HashMap<char, Step> = create_step_map(input);
-    let mut todos: Vec<char> = find_roots(&step_map);
-    
-    let mut seconds = 0;
-    while todos.len() > 0 {
-        for i in 0..5 {
-            if i < todos.len() {
-                let character = todos[i];
-                
-                let mut valid = true;
-                for parent in step_map.get(&character).unwrap().parents.iter() {
-                    if !step_map.get(&parent).unwrap().visited {
-                        valid = false;
-                    }
-                }
-                if valid {
-                    step_map.get_mut(&character).unwrap().secs_left -= 1;
-                }
-                
-                if step_map.get(&character).unwrap().secs_left == 0 {
-                    step_map.get_mut(&character).unwrap().visited = true;
-                    let step = step_map.get(&character).unwrap();
-                    let mut children = step.children.clone();
-                    children.sort();
-                    todos.remove(i);
-                    for character in children.iter() {
-                        if !todos.contains(character) {
-                            todos.push(*character);
-                        }
-                    }
-
-                    println!("{}", character);
-                }
-
-            }
-
-        }
-        seconds += 1;
-    }
-
-    String::new()
+    String::from("¯\\_(ツ)_/¯")
 }
