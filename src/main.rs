@@ -5,6 +5,8 @@ use std::io::{BufReader, BufRead};
 extern crate regex;
 extern crate chrono;
 
+mod linkedlist;
+
 mod dayone;
 mod daytwo;
 mod daythree;
