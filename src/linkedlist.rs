@@ -1,13 +1,13 @@
 
 pub struct CircularDoublyLinkedList {
-    nodes: Vec<Node>,
+    pub nodes: Vec<Node>,
     cursor: Option<usize>,
 }
 
-struct Node {
-    val: u32,
-    prev: usize,
-    next: usize,
+pub struct Node {
+    pub val: u32,
+    pub prev: usize,
+    pub next: usize,
 }
 
 impl CircularDoublyLinkedList {
